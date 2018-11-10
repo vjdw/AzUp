@@ -10,16 +10,6 @@
                 "${workspaceFolder}/azup.csproj"
             ],
             "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "build",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "build",
-                "${workspaceFolder}/azup.csproj"
-            ],
-            "problemMatcher": "$msCompile"
         }
     ]
 }

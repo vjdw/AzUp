@@ -3,6 +3,8 @@
 
 appsettings.local.json
 
+*.db
+
 # User-specific files
 *.suo
 *.user
