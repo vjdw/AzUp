@@ -6,7 +6,7 @@ namespace AzUp.Helpers
 {
     internal class FileSystem
     {
-        public static async Task WalkDirectory(string dirPath, Func<FileInfo,Task> fileAction, Action<Exception> errorAction)
+        public static void WalkDirectory(string dirPath, Action<FileInfo> fileAction, Action<Exception> errorAction)
         {
             DirectoryInfo dirInfo = new DirectoryInfo(dirPath);
             try
@@ -15,7 +15,7 @@ namespace AzUp.Helpers
                 {
                     try
                     {
-                        await fileAction(fileInfo);
+                        fileAction(fileInfo);
                     }
                     catch (UnauthorizedAccessException UnAuthTop)
                     {
@@ -25,7 +25,7 @@ namespace AzUp.Helpers
 
                 foreach (var childDirInfo in dirInfo.EnumerateDirectories("*"))
                 {
-                    await WalkDirectory(childDirInfo.FullName, fileAction, errorAction);
+                    WalkDirectory(childDirInfo.FullName, fileAction, errorAction);
                 }
             }
             catch (DirectoryNotFoundException ex)
